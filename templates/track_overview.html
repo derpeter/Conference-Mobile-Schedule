@@ -1,0 +1,14 @@
+{% import "macros.html" as macros %}
+
+{% for (day, track_events) in conference.events.iteritems() %}
+{% call macros.render_page("Track %d %s" %(loop.index, day.strftime("%d.%m.%Y")), day.strftime("d_%s"), "main") %}
+	<ul data-role="listview">
+		{% for track in track_events %}
+			{%- for trackname, events in track.iteritems() -%}
+				<li> <a href="#{{ trackname|replace(" ", "_") }}{{day.strftime('%s') }}">{{ trackname }}</a><span class="ui-li-count">{{ events|count }}</span></li>
+			{%- endfor -%}
+		{% endfor %}
+	</ul>
+{% endcall %}
+
+{% endfor %}

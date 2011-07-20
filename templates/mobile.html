@@ -1,0 +1,89 @@
+{% import "macros.html" as macros %}
+<html>
+<head>
+	<title>{{ conference.title }}</title>
+	<link rel="stylesheet" href="http://code.jquery.com/mobile/1.0b1/jquery.mobile-1.0b1.min.css" />
+	<script src="http://code.jquery.com/jquery-1.6.1.min.js"></script>
+	<script src="http://code.jquery.com/mobile/1.0b1/jquery.mobile-1.0b1.min.js"></script>
+
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+	<style type="text/css">
+	.info th { text-align: left; }
+    body {background: #DDDDDD; }
+	</style>
+   	<meta name='viewport' content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no;'>
+	<!-- iOS tweaks -->
+	<link rel="apple-touch-icon-precomposed" href="{{ conference.icon }}"/>
+	<meta name='apple-mobile-web-app-status-bar-style' content='black'>
+	<meta name="apple-mobile-web-app-capable" content="yes" />
+	</head>
+<body>
+
+
+{% call macros.render_page(conference.title,  "main") %}
+<p>
+<table>
+	<tr>	
+		<th><a href="{{conference.url}}" target="_blank"><img src="{{ conference.icon }}"></a></th><td>
+		<center><b><font size="6"><a href="{{conference.url}}" target="_blank">{{ conference.title }}</a></font></b> <br />		
+		<a href="{{conference.url}}" target="_blank">{{conference.start}} - {{conference.end}}</a></center></td>
+	</tr>
+</table>
+<br />
+</p>
+<p>
+<h2>Days:</h2>
+</p>
+<p>
+<ul data-role="listview">
+	{% for (day, room_events) in conference.events.iteritems() %}
+		<li> <a href="#d_{{ day.strftime("%s")}}"> Day {{ loop.index }} </a></li>
+	{% endfor %}
+</ul>
+</p>
+<p>
+<h2>Tracks:</h2>
+</p>
+<p>
+<ul data-role="listview">
+	{% for (track, track_events) in conference.tracks.iteritems() %}
+		<li> <a href="#{{ track|replace(" ", "_") }}>{{ track }} </a></li>
+	{% endfor %}
+</ul>
+</p>
+<p>
+<h2>Rooms:</h2>
+</p>
+<br />
+{% endcall %}
+{% include "room_overview.html" %}
+{% for (day, room_events) in conference.events.iteritems() %}
+{% for room in room_events %}
+{% for roomname, events in room.iteritems()%}
+{% set title = 'Room ' + roomname %}
+{% set id = roomname.replace(' ', '_') + day.strftime('%s') %}
+{% call macros.render_page(title ,  id, day.strftime('%s')) %}
+
+				<ul data-role="listview">
+				{% for event in events %}
+					<li> <a href="#talk_{{ event.pentabarf_id }}">
+						{{ event.title }}
+
+						<p class="ui-li-aside"><strong>{{event.start.strftime("%H:%M")}}</strong></p>
+						</a>
+					</li>
+				{% endfor %}
+				</ul>
+{% endcall %}
+{% endfor %}
+{% endfor %}
+{% endfor %}
+
+
+
+
+{% include "event.html" %}
+
+
+</body>
+</html>

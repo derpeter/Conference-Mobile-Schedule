@@ -1,0 +1,59 @@
+{% import "macros.html" as macros %}
+
+{% for (day, room_events) in conference.events.iteritems() %}
+{% for room in room_events  %}
+{% for roomname, events in room.iteritems()%}
+{% for event in events %}
+{% set room_id = roomname.replace(' ', '_') + day.strftime('%s') %}
+{% call macros.render_page(event.title, 'talk_' + event.pentabarf_id, room_id) %}
+	<p class="info">
+	<table>
+		<tr>
+			<th>Speaker</th><td>
+			{% for person in event.person %}
+				{{person}}<br />
+			{% endfor %}
+			</td>
+		</tr>
+		<tr>
+			<th>Room</th><td>{{event.room}}</td>
+		</tr>
+		<tr>
+			<th>Track</th><td>{{event.track}}</td>
+		</tr>
+		<tr>
+			<th>Time</th><td>{{event.start.strftime("%H:%M")}} - {{ event.end.strftime("%H:%M") }}</td>
+		</tr>
+		<tr>
+			<th>Event link</th><td><a href="{{ baseurl }}/events/{{event.pentabarf_id}}.html" target="_blank">View original entry</a></td>
+		</tr>
+			{% if event.videourl is defined %}
+			    </tr>	    
+				       <th>Video link</th><td><a href="{{ event.videourl }}" target="_blank">Play video</a></td>
+			    </tr>
+			{% endif %}
+		
+
+	</table>
+	<div class="clear"></div>
+
+	</p>
+
+   <p class="abstract">
+		{{ event.abstract|replace('\n', '<br />') }}
+	</p>
+	<p class="description">
+		{{ event.description|replace('\n', '<br />') }}
+	<ul>
+	{% for link in event.link %}
+		<li> {{ link }} </li>
+	{% endfor %}
+	</ul>
+{% endcall %}
+
+
+
+{% endfor %}
+{% endfor %}
+{% endfor %}
+{% endfor %}

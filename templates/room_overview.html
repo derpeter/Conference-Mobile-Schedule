@@ -1,0 +1,14 @@
+{% import "macros.html" as macros %}
+
+{% for (day, room_events) in conference.events.iteritems() %}
+{% call macros.render_page("Day %d %s" %(loop.index, day.strftime("%d.%m.%Y")), day.strftime("d_%s"), "main") %}
+	<ul data-role="listview">
+		{% for room in room_events %}
+			{%- for roomname, events in room.iteritems() -%}
+				<li> <a href="#{{ roomname|replace(" ", "_") }}{{day.strftime('%s') }}">{{ roomname }}</a><span class="ui-li-count">{{ events|count }}</span></li>
+			{%- endfor -%}
+		{% endfor %}
+	</ul>
+{% endcall %}
+
+{% endfor %}

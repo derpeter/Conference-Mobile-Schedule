@@ -1,0 +1,23 @@
+{% macro render_page(title, id, back=None ) -%}
+    <div data-role="page", id="{{id}}">
+        <div data-role="header" data-position="fixed">
+        {% if back %}
+			<a href='#{{back}}' class='ui-btn-left' data-icon='arrow-l'>Back</a>
+		{% endif %}
+            <h1>{{ title }}</h1>
+        {% if id != "main" %}
+			<a href="#main" class="ui-btn-right" data-icon="home" data-iconpos="notext" data-direction="reverse">Home</a>
+        {% endif %}
+       </div>
+        <div data-role="content">
+            {{ caller() }}
+        </div>
+<!--        <div data-role="footer" data-position="fixed">
+			<h4>By <a href="http://spamt.net">Ulrich Dangel</a>, with <a href="http://jinja.pocoo.org/">Jinja</a> &amp;<a href="http://jquerymobile.com/">jQuery Mobile</a></h4>
+		</div>
+-->
+    </div>
+
+
+{%- endmacro %}
+
