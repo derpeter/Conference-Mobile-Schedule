@@ -41,13 +41,14 @@
 	{% endfor %}
 </ul>
 </p>
+<!--
 <p>
 <h2>Tracks:</h2>
 </p>
 <p>
 <ul data-role="listview">
 	{% for (track, track_events) in conference.tracks.iteritems() %}
-		<li> <a href="#{{ track|replace(" ", "_") }}>{{ track }} </a></li>
+		<li> <a href="#{{ track|replace(" ", "_") }}">{{ track }} </a></li>
 	{% endfor %}
 </ul>
 </p>
@@ -55,6 +56,7 @@
 <h2>Rooms:</h2>
 </p>
 <br />
+-->
 {% endcall %}
 {% include "room_overview.html" %}
 {% for (day, room_events) in conference.events.iteritems() %}

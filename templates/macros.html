@@ -2,7 +2,7 @@
     <div data-role="page", id="{{id}}">
         <div data-role="header" data-position="fixed">
         {% if back %}
-			<a href='#{{back}}' class='ui-btn-left' data-icon='arrow-l'>Back</a>
+			<a href='#{{back}}' class='ui-btn-left' data-rel='back' data-icon='arrow-l'>Back</a>
 		{% endif %}
             <h1>{{ title }}</h1>
         {% if id != "main" %}
