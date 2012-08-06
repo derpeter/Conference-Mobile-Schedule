@@ -86,16 +86,17 @@ def parse_file(src):
 		for person in ex.findall('persons/person'):
                 	e.person.append(person.text)
                 e.slug = ex.findtext('slug')
-		tmp_url = options.videourl+room.replace('-', '')+'/h264/'
-		tmp_url_parsed = urlparse(tmp_url)
-		tmp_file = e.slug+'.mp4'
-		conn = httplib.HTTPConnection( tmp_url_parsed.netloc , 80 )
-		conn.request( 'HEAD', tmp_url_parsed.path+e.slug+'.mp4' )
-		r1 = conn.getresponse()
-		conn.close()
-		if r1.status == 200:
-		    e.videourl = tmp_url+tmp_file
-                (hour, minute) = e.duration.split(":")
+		if options.videourl != None:
+			tmp_url = options.videourl+room.replace('-', '')+'/h264/'
+			tmp_url_parsed = urlparse(tmp_url)
+			tmp_file = e.slug+'.mp4'
+			conn = httplib.HTTPConnection( tmp_url_parsed.netloc , 80 )
+			conn.request( 'HEAD', tmp_url_parsed.path+e.slug+'.mp4' )
+			r1 = conn.getresponse()
+			conn.close()
+			if r1.status == 200:
+			    e.videourl = tmp_url+tmp_file
+               	(hour, minute) = e.duration.split(":")
                 duration = datetime.timedelta(hours=int(hour), minutes=int(minute))
 
                 e.duration = duration
