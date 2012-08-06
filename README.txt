@@ -8,6 +8,6 @@ There is also an android app that makes use of the output of this script.
 You can find it on github [4].
 
 [1] http://www.pentabarf.org
-[2] not jet public 
+[2] https://github.com/oneiros/frab 
 [3] http://froscon.org
 [4] https://github.com/Duckattack/FrOSConSchedule
