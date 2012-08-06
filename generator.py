@@ -122,6 +122,9 @@ def main():
         sys.stderr.write("Specify schedule\n")
         parser.print_help()
         sys.exit(1)
+    if options.iconurl == None:
+	sys.stderr.write("No conference Icon defined\n")
+	sys.exit(1)
     if args[0].startswith("http"):
         data = urllib2.urlopen(args[0])
         options.baseurl = os.path.dirname(args[0])
