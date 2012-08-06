@@ -125,6 +125,12 @@ def main():
     if options.iconurl == None:
 	sys.stderr.write("No conference Icon defined\n")
 	sys.exit(1)
+    if options.baseurl == None:
+	sys.stderr.write("No base url defined. Please provide pentabarf / frab url\n")
+	sys.exit(1)
+    if options.eventurl == None:
+	sys.stderr.write("No event url defined. Please provide the url to the event website \n")
+	sys.exit(1)
     if args[0].startswith("http"):
         data = urllib2.urlopen(args[0])
         options.baseurl = os.path.dirname(args[0])
