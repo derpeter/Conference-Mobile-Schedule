@@ -5,6 +5,7 @@
 			<a href='#{{back}}' class='ui-btn-left' data-rel='back' data-icon='arrow-l'>Back</a>
 		{% endif %}
             <h1>{{ title }}</h1>
+		<!--	<a href="" data-icon="search" data-iconpos="notext" data-rel="dialog" data-transition="fade" onclick="return showDialog()">Search</a>-->
         {% if id != "main" %}
 			<a href="#main" class="ui-btn-right" data-icon="home" data-iconpos="notext" data-direction="reverse">Home</a>
         {% endif %}
@@ -12,10 +13,6 @@
         <div data-role="content">
             {{ caller() }}
         </div>
-<!--        <div data-role="footer" data-position="fixed">
-			<h4>By <a href="http://spamt.net">Ulrich Dangel</a>, with <a href="http://jinja.pocoo.org/">Jinja</a> &amp;<a href="http://jquerymobile.com/">jQuery Mobile</a></h4>
-		</div>
--->
     </div>
 
 
