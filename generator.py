@@ -58,7 +58,7 @@ def parse_file(src):
         events[date] = []
         event_per_room = []
         for rx in dx.findall('room'):
-            room = rx.get('name').replace('/', '-').replace(' ', '')
+            room = rx.get('name').replace('/', ' - ')
             roomid = hashlib.md5(room.encode("utf8")).hexdigest() + date.strftime('%s')
 
             events_in_room = []
