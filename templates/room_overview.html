@@ -1,6 +1,6 @@
 {% import "macros.html" as macros %}
 
-{% for (day, room_events) in conference.events.iteritems() %}
+{% for (day, room_events) in conference.events|dictsort %}
 {% call macros.render_page("Day %d %s" %(loop.index, day.strftime("%d.%m.%Y")), day.strftime("d_%s"), "main") %}
 	<ul data-role="listview">
 		{% for room in room_events %}

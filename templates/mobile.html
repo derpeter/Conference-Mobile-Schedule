@@ -58,8 +58,8 @@
 </p>
 <p>
 <ul data-role="listview">
-	{% for (day, room_events) in conference.events.iteritems() %}
-		<li> <a href="#d_{{ day.strftime("%s")}}"> Day {{ loop.index }} </a></li>
+	{% for (day, room_events) in conference.events|dictsort %}
+		<li> <a href="#d_{{ day.strftime("%s")}}"> Day {{ loop.index }}</a></li>
 	{% endfor %}
 </ul>
 </p>
