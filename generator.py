@@ -14,6 +14,7 @@ import xml.etree.ElementTree as xml_parser
 from jinja2 import Environment, FileSystemLoader
 import urllib2
 import httplib
+import hashlib
 from urlparse import urlparse
 
 
@@ -58,6 +59,7 @@ def parse_file(src):
         event_per_room = []
         for rx in dx.findall('room'):
             room = rx.get('name').replace('/', '-').replace(' ', '')
+            roomid = hashlib.md5(room.encode("utf8")).hexdigest() + date.strftime('%s')
 
             events_in_room = []
             for ex in rx.findall('event'):
@@ -82,6 +84,7 @@ def parse_file(src):
                 e.type = ex.findtext('type')
                 e.language = ex.findtext('language')
                 e.room = room
+                e.roomid = roomid
 		e.person = []
 		for person in ex.findall('persons/person'):
                 	e.person.append(person.text)
@@ -108,7 +111,8 @@ def parse_file(src):
 			e.link.append(tmp)
                 events_in_room.append(e)
             if events_in_room:
-                event_per_room.append({room: events_in_room})
+		    roomstr = room + "^--^" + roomid
+		    event_per_room.append({roomstr: events_in_room})
         events[date] = event_per_room
     conference.events = events
     conference.tracks = tracks

@@ -83,10 +83,11 @@
 {% include "room_overview.html" %}
 {% for (day, room_events) in conference.events.iteritems() %}
 {% for room in room_events %}
-{% for roomname, events in room.iteritems()%}
+{% for roomstr, events in room.iteritems()%}
+{% set roomname, roomid = roomstr.split("^--^") %}
 {% set title = 'Room ' + roomname %}
-{% set id = roomname.replace(' ', '_') + day.strftime('%s') %}
-{% call macros.render_page(title ,  id, day.strftime('%s')) %}
+{% set id = roomid %}
+{% call macros.render_page(title , id, day.strftime('%s')) %}
 
 				<ul data-role="listview" data-autodividers="false">
 				{% for event in events %}

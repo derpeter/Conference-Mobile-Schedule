@@ -2,9 +2,9 @@
 
 {% for (day, room_events) in conference.events.iteritems() %}
 {% for room in room_events  %}
-{% for roomname, events in room.iteritems()%}
+{% for roomstr, events in room.iteritems()%}
+{% set roomname, room_id = roomstr.split("^--^") %}
 {% for event in events %}
-{% set room_id = roomname.replace(' ', '_') + day.strftime('%s') %}
 {% call macros.render_page(event.title, 'talk_' + event.pentabarf_id, room_id) %}
 	<p class="info">
 	<table>
