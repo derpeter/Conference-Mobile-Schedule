@@ -3,11 +3,9 @@ of Pentabarf [1] or frab [2]. Its still under development and partially quiet ha
 I got the source from Ulrich Dangel and started messing around with the code so blame 
 me for the bad code quality and just don't use it if you don't like it :-).
 
-The version in this repository will be used for the FrOSCon [3] so you may need to remove some FrOSCon related strings.
 There is also an android app that makes use of the output of this script.
 You can find it on github [4].
 
 [1] http://www.pentabarf.org
 [2] https://github.com/oneiros/frab 
-[3] http://froscon.org
-[4] https://github.com/Duckattack/FrOSConSchedule
+[3] https://github.com/Duckattack/FrOSConSchedule
