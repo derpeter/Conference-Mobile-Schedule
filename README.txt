@@ -7,5 +7,5 @@ There is also an android app that makes use of the output of this script.
 You can find it on github [4].
 
 [1] http://www.pentabarf.org
-[2] https://github.com/oneiros/frab 
+[2] https://github.com/frab/frab 
 [3] https://github.com/Duckattack/FrOSConSchedule
