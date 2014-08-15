@@ -1,5 +1,5 @@
 {% macro render_page(title, id, back=None ) -%}
-    <div data-role="page", id="{{id}}">
+    <div data-role="page" id="{{id}}">
         <div data-role="header" data-position="fixed">
         {% if back %}
 			<a href='#{{back}}' class='ui-btn-left' data-rel='back' data-icon='arrow-l'>Back</a>
