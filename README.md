@@ -4,8 +4,8 @@ I got the source from Ulrich Dangel and started messing around with the code so 
 me for the bad code quality and just don't use it if you don't like it :-).
 
 There is also an android app that makes use of the output of this script.
-You can find it on github [4].
+You can find it on github [3].
 
-[1] http://www.pentabarf.org
-[2] https://github.com/frab/frab 
-[3] https://github.com/Duckattack/FrOSConSchedule
+[1] [pentabarf](http://www.pentabarf.org)
+[2] [frab](https://github.com/frab/frab) 
+[3] [FrOSCon app](https://github.com/derpeter/FrOSCon)
