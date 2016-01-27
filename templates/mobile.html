@@ -83,8 +83,8 @@
 {% for (day, room_events) in conference.events.iteritems() %}
 {% for room in room_events %}
 {% for roomstr, events in room.iteritems()%}
-{% set roomname, roomid = roomstr.split("^--^") %}
-{% set title = 'Room ' + roomname %}
+{% set roomname, roomid, trackname = roomstr.split("^--^") %}
+{% set title = trackname + ' [Room ' + roomname + ']'%}
 {% set id = roomid %}
 {% call macros.render_page(title , id, day.strftime('%s')) %}
 

@@ -111,8 +111,13 @@ def parse_file(src):
 			e.link.append(tmp)
                 events_in_room.append(e)
             if events_in_room:
-		    roomstr = room + "^--^" + roomid
-		    event_per_room.append({roomstr: events_in_room})
+                roomstr = room + "^--^" + roomid
+                tnames = []
+                for t in events_in_room:
+                    if t.track not in tnames:
+                        tnames.append(t.track)
+                roomstr = roomstr + "^--^" + " / ".join(tnames)
+                event_per_room.append({roomstr: events_in_room})
         events[date] = event_per_room
     conference.events = events
     conference.tracks = tracks
