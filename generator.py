@@ -46,7 +46,7 @@ def parse_file(src):
     day_change = cx.findtext('day_change')
     if not day_change:
       day_change = "0:0"
-    day_change = datetime.datetime.strptime(day_change, "%H:%M")
+    day_change = datetime.datetime.strptime(day_change, "%H:%M:%S")
     conference.icon = options.iconurl 
     conference.url = options.eventurl
     conference.start = cx.findtext('start')
@@ -111,8 +111,13 @@ def parse_file(src):
 			e.link.append(tmp)
                 events_in_room.append(e)
             if events_in_room:
-		    roomstr = room + "^--^" + roomid
-		    event_per_room.append({roomstr: events_in_room})
+                roomstr = room + "^--^" + roomid
+                tnames = []
+                for t in events_in_room:
+                    if t.track not in tnames:
+                        tnames.append(t.track)
+                roomstr = roomstr + "^--^" + " / ".join(tnames)
+                event_per_room.append({roomstr: events_in_room})
         events[date] = event_per_room
     conference.events = events
     conference.tracks = tracks

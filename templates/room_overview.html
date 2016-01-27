@@ -5,9 +5,9 @@
 	<ul data-role="listview">
 		{% for room in room_events %}
 			{%- for roomstr, events in room.iteritems() -%}
-			{% set roomname, roomid = roomstr.split("^--^") %}
+			{% set roomname, roomid, trackname = roomstr.split("^--^") %}
 
-				<li> <a href="#{{ roomid }}">{{ roomname }}</a><span class="ui-li-count">{{ events|count }}</span></li>
+				<li> <a href="#{{ roomid }}">{{ trackname }} [{{ roomname }}]</a><span class="ui-li-count">{{ events|count }}</span></li>
 			{%- endfor -%}
 		{% endfor %}
 	</ul>
