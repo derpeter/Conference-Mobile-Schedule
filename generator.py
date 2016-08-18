@@ -45,7 +45,7 @@ def parse_file(src):
     conference.title = cx.findtext('title')
     day_change = cx.findtext('day_change')
     if not day_change:
-      day_change = "0:0"
+      day_change = "00:00:00"
     day_change = datetime.datetime.strptime(day_change, "%H:%M:%S")
     conference.icon = options.iconurl 
     conference.url = options.eventurl
